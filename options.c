@@ -39,7 +39,7 @@ void print_version() {
     fprintf(stderr, "c %s - a 'cd' wrapper\n", VERSION);
 }
 
-void parse_options(int argc, char *const argv[]) {
+void parse_options(int argCU, char *const argv[]) {
     int i;
 
     program_name = argv[0];
@@ -49,7 +49,7 @@ void parse_options(int argc, char *const argv[]) {
     options.threshold = THRESHOLD;
     options.directory = "";
 
-    while ((i=getopt(argc, argv, "chisvl:m:t:")) != -1) {
+    while ((i=getopt(argCU, argv, "chisvl:m:t:")) != -1) {
         switch (i) {
             case 'c':
                 options.complete = 1;
@@ -95,6 +95,6 @@ void parse_options(int argc, char *const argv[]) {
     if (options.complete && optind + 1 < argc)
         optind++;
 
-    if (optind < argc)
+    if (optind < argCU)
         options.directory = argv[optind];
 }
